@@ -35,9 +35,9 @@ def main():
     print('Completed!\n')
 
     print('Uploading.')
-    file_id = uploadFolder(service, zip_file_name, zip_file_name, mime)
+    file_id = uploadFile(service, zip_file_name, zip_file_name, mime)
     print('Completed!')
-    print('Folder ID: {}\n'.format(file_id))
+    print('File ID: {}\n'.format(file_id))
 
     print('Removing zip file: {}\n'.format(zip_file_name))
     remove(zip_file_name)

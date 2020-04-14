@@ -74,7 +74,7 @@ def authBuild(SCOPES, PATH=''):
 # Mime Types:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 
-def uploadFolder(drive_service, file_name, file_path, mime):
+def uploadFile(drive_service, file_name, file_path, mime):
     file_metadata = {'name': file_name}
 
     media = MediaFileUpload(file_path, mime)
