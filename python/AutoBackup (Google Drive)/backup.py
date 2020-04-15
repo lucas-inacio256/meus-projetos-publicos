@@ -1,7 +1,7 @@
 ###############################################################################
 
 ## author: Lucas santos
-## version: 1.0
+## version: 1.1
 ## Python 3.6.5 | UTF-8
 
 import pickle
@@ -12,6 +12,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.http import MediaFileUpload
 
 from datetime import date
+from os.path import exists
 from os import walk
 from os import remove
 import zipfile
@@ -24,13 +25,19 @@ def get_datetime():
 ###############################################################################
 
 def zipFolder(folder_path, zip_file_path):
-    zip_file = zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED)
+    if exists(folder_path):
+        with zipfile.ZipFile(zip_file_path, 'w',
+                             zipfile.ZIP_DEFLATED) as zip_file:
 
-    for root, dirs, files in walk(folder_path):
-        for file in files:
-            zip_file.write( os.path.join(root, file) )
+            for root, dirs, files in walk(folder_path):
+                for file in files:
+                    zip_file.write( os.path.join(root, file) )
 
-    zip_file.close()
+        return True
+
+    else:
+        print('!FileNotFoundError!')
+        return False
 
 ###############################################################################
 
@@ -74,10 +81,10 @@ def authBuild(SCOPES, PATH=''):
 # Mime Types:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 
-def uploadFile(drive_service, file_name, file_path, mime):
-    file_metadata = {'name': file_name}
+def uploadFile(drive_service, google_file_name, file_path, mime):
+    file_metadata = {'name': google_file_name}
 
-    media = MediaFileUpload(file_path, mime)
+    media = MediaFileUpload(file_path, mime, resumable=True)
 
     file = drive_service.files().create(body = file_metadata,
                                         media_body = media,
