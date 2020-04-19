@@ -4,7 +4,7 @@
 ## version: 1.1
 ## Python 3.6.5 | UTF-8
 
-## Modules required:
+## Required Modules:
 ##   google-api-python-client
 ##   google-auth-httplib2
 ##   google-auth-oauthlib
