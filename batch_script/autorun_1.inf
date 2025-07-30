@@ -1,0 +1,4 @@
+[autorun]
+;Open=PATH
+ShellExecute=PATH
+UseAutoPlay=1
