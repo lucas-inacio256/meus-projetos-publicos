@@ -1,0 +1,3 @@
+average_price=[117075.50]
+trade_power=[60000]
+money=[7900]
