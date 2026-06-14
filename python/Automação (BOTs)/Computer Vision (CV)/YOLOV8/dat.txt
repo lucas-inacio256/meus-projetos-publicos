@@ -1,0 +1,14 @@
+# Train
+!yolo task=detect mode=train model=model.pt data="project"/data.yaml epochs=20 imgsz=640
+
+# Predict
+!yolo task=detect mode=predict model=model.pt conf=0.75 source=images_test/
+
+# Roboflow deploy model
+import roboflow
+private_key = 'A2bSFJZI5S49F1sKXSBB'
+publish_key = 'rf_N6op2KEwseeqHT0gKRuRQ0P2Ywt1'
+rf = roboflow.Roboflow(api_key=private_key)
+project = rf.workspace().project("project-cwv4x")
+version = project.version(9)
+version.deploy("yolov8s.pt", "runs/detect/train/weights/", "best.pt")
