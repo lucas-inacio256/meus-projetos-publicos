@@ -9,7 +9,7 @@ import websocket
 import json
 import os
 
-os.system('TITLE InvestBTC')
+os.system('TITLE TradeBTC')
 
 #====================================================================================================
 
@@ -87,12 +87,10 @@ def on_open(ws):
 
 #====================================================================================================
 
-def main():
+if __name__ == '__main__':
     ws = websocket.WebSocketApp('wss://stream.binance.com:9443/ws',
                                 on_open=on_open,
                                 on_message=on_message,
                                 on_error=on_error,
                                 on_close=on_close)
     ws.run_forever()
-
-main()
