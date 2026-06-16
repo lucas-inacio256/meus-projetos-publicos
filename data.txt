@@ -1,3 +1,0 @@
-average_price=[100000]
-trade_power=[10000]
-money=[1000]
